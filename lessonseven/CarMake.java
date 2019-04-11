@@ -1,6 +1,6 @@
 package lessonseven;
 
-public class CarMake {
+public class CarMake implements Comparable<CarMake> {
     private String make;
     private int skorost;
     private int rashod;
@@ -43,6 +43,14 @@ public class CarMake {
 
     public void setBak() {
         this.bak = bak;
+    }
+
+    /*
+     * Added task number three. Have to use comparable interface.
+     */
+    @Override
+    public int compareTo(CarMake o) {
+        return this.getMake().compareTo(o.getMake());
     }
 
     public String toString() {
