@@ -1,5 +1,6 @@
 package lessonseven;
 
+
 public class CarMake implements Comparable<CarMake> {
     private String make;
     private int skorost;
@@ -12,8 +13,11 @@ public class CarMake implements Comparable<CarMake> {
         this.rashod = rashod;
         this.bak = bak;
     }
+    public CarMake() {
 
-    public String getMake() {
+    }
+
+        public String getMake() {
         return make;
     }
 
