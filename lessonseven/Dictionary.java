@@ -4,32 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Dictionary {
-    private String base;
-    private String explanation;
-    private Map dict = new HashMap();
-
-    public Dictionary(String base, String explanation) {
-        this.base = base;
-        this.explanation = explanation;
-    }
+    private Map<String, String> dict = new HashMap<String, String>();
 
     public Dictionary() {
     }
 
-    public String getBase() {
-        return base;
-    }
-
-    public String getExplanation() {
-        return explanation;
-    }
-
-    public void setSlovar(Dictionary d) {
-        dict.put(d.getBase(), d.getExplanation());
+    public void setSlovar(String word, String explanation) {
+        dict.put(word, explanation);
     }
 
     public String getSlovar(String s) {
-        return (String) dict.get(s);
+        return dict.get(s);
     }
 
 }

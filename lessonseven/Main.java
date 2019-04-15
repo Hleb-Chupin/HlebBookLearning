@@ -9,7 +9,26 @@ public class Main {
         /**
          * Task number one.
          */
-        CheckTime.run();
+        ArrayList arr = new ArrayList();
+        LinkedList link = new LinkedList();
+        HashSet hash = new HashSet();
+        TreeSet trs = new TreeSet();
+
+        TimerUtil.getTimeToAddElement(arr);
+        TimerUtil.getTimeToAddElement(link);
+        TimerUtil.getTimeToAddElement(hash);
+        TimerUtil.getTimeToAddElement(trs);
+
+        TimerUtil.getTimeToFindElement(arr);
+        TimerUtil.getTimeToFindElement(link);
+        TimerUtil.getTimeToFindElement(hash);
+        TimerUtil.getTimeToFindElement(trs);
+
+        TimerUtil.getTimeToClearElement(arr);
+        TimerUtil.getTimeToClearElement(link);
+        TimerUtil.getTimeToClearElement(hash);
+        TimerUtil.getTimeToClearElement(trs);
+
 
         List<CarMake> carList = new ArrayList<CarMake>();
         carList.add(new CarMake("Kia", 220, 7, 70));
@@ -84,21 +103,31 @@ public class Main {
 
         for (int i = 0; i < 35; i++) {
             List<CarMake> cars = new ArrayList<CarMake>();
-            for (int j = 0; j < random.nextInt(100); j++) {
+            int rand = random.nextInt(100);
+            for (int j = 0; j < rand; j++) {
                 cars.add(new CarMake());
             }
             carMultipleList.add(i, cars);
         }
 
+        /*
+         ** Comparator anonimnyi klass.
+         */
+//        Comparator<List<CarMake>> compareLength = new Comparator<List<CarMake>>() {
+//            public int compare(List lst1, List lst2) {
+//                return Integer.compare(lst1.size(), lst2.size());
+//            }
+//        };
+//        Collections.sort(carMultipleList, compareLength);
+//        for (int a = 0; a < 35; a++) {
+//            System.out.println("Размер списка номер " + a + " : " + carMultipleList.get(a).size());
+//
+//        }
 
-        Comparator<List<CarMake>> compareLength = new Comparator<List<CarMake>>() {
-            public int compare(List lst1, List lst2) {
-                return Integer.compare(lst1.size(), lst2.size());
-            }
-        };
-        Collections.sort(carMultipleList, compareLength);
+        CarComparator carComparator = new CarComparator();
+        Collections.sort(carMultipleList, carComparator);
         for (int a = 0; a < 35; a++) {
-            System.out.println("Размер списка номер " + a + " : " + carMultipleList.get(a).size());
+            System.out.println("Размер списка номер jj" + a + " : " + carMultipleList.get(a).size());
 
         }
 
@@ -114,17 +143,14 @@ public class Main {
          * Libo, nado delat etot klass statichnym. Chtoby on rabotal pohozhe na Math.
          *
          */
-        Dictionary home = new Dictionary("Home", "The building where people live.");
-        Dictionary road = new Dictionary("Road", "The surface where people drive the car.");
-        Dictionary sun = new Dictionary("Sun", "The planet of the Galaxy.");
-        Dictionary table = new Dictionary("Table", "The furniture people are using in the kitchen.");
-        Dictionary tv = new Dictionary("TV", "The screen that shows video.");
-        sun.setSlovar(home);
-        sun.setSlovar(road);
-        sun.setSlovar(sun);
-        sun.setSlovar(table);
-        sun.setSlovar(tv);
+        Dictionary russkiy = new Dictionary();
+        russkiy.setSlovar("Home", "The building where people live.");
+        russkiy.setSlovar("Road", "The surface where people drive the car.");
+        russkiy.setSlovar("Sun", "The planet of the Galaxy.");
+        russkiy.setSlovar("Table", "The furniture people are using in the kitchen.");
+        russkiy.setSlovar("TV", "The screen that shows video.");
 
-        System.out.println(sun.getSlovar("Home"));
+
+        System.out.println(russkiy.getSlovar("Home"));
     }
 }

@@ -4,13 +4,13 @@ import java.util.*;
 
 
 public class TimerUtil {
-    private static long timeFirst;
-    private static long timeSecond;
-    private static long timeThird;
+    private long timeFirst;
+    private long timeSecond;
+    private long timeThird;
 
 
     static void getTimeToAddElement(Collection o) {
-        timeFirst = System.currentTimeMillis();
+        long timeFirst = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
             o.add(i);
         }
@@ -18,7 +18,7 @@ public class TimerUtil {
     }
 
     static void getTimeToFindElement(Collection o) {
-        timeSecond = System.currentTimeMillis();
+        long timeSecond = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
             o.contains(i);
         }
@@ -26,7 +26,7 @@ public class TimerUtil {
     }
 
     static void getTimeToClearElement(Collection o) {
-        timeThird = System.currentTimeMillis();
+        long timeThird = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
             o.remove(i);
         }
