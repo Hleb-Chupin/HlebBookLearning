@@ -4,10 +4,6 @@ import java.util.*;
 
 
 public class TimerUtil {
-    private long timeFirst;
-    private long timeSecond;
-    private long timeThird;
-
 
     static void getTimeToAddElement(Collection o) {
         long timeFirst = System.currentTimeMillis();

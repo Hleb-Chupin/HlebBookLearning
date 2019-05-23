@@ -107,7 +107,7 @@ public class Main {
             for (int j = 0; j < rand; j++) {
                 cars.add(new CarMake());
             }
-            carMultipleList.add(i, cars);
+            carMultipleList.add(cars);
         }
 
         /*
