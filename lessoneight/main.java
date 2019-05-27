@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         /*
         /Task 1
          */
@@ -22,10 +22,18 @@ public class Main {
                     0,
                     buffer.length);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
-            in.close();
-            out.close();
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         /*
@@ -38,13 +46,17 @@ public class Main {
             while (text.ready()) {
                 sort.add(text.readLine().toString());
             }
-            Iterator value = sort.iterator();
-            while (value.hasNext()){
-                System.out.println(value.next());}
+            for (String s : sort) {
+                System.out.println(s);
+            }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
-            text.close();
+            try {
+                text.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         /*
@@ -67,9 +79,13 @@ public class Main {
                 o++;
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
-            read.close();
+            try {
+                read.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
          /*
         /Task 4
