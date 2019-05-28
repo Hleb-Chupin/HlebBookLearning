@@ -9,8 +9,27 @@ public class Main {
         /*
         /Task 1
          */
+        Main.videoFileCopier("/Users/hlebchupin/Downloads/IMG_3321.mov", "/Users/hlebchupin/Downloads/IMG_3321_copy.mov");
+        /*
+        /Task 2
+         */
+        Main.sortFileNames("/Users/hlebchupin/Downloads/Text.txt");
+        /*
+        /Task 3
+         */
+        Main.getLinesInFile("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", 3);
+
+
+    /*
+   /Task 4
+    */
+        UniqueWordsFinder finder = new UniqueWordsFinder();
+        finder.uniqueWordsCounter("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", ".java");
+    }
+
+    public static void videoFileCopier(String folderName, String newFolderName) {
         byte[] buffer = null;
-        try (InputStream in = new FileInputStream("/Users/hlebchupin/Downloads/IMG_3321.mov")) {
+        try (InputStream in = new FileInputStream(folderName)) {
             buffer = new byte[in.available()];
             in.read(buffer,
                     0,
@@ -18,19 +37,17 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (OutputStream out = new FileOutputStream("/Users/hlebchupin/Downloads/IMG_3321_copy.mov")) {
+        try (OutputStream out = new FileOutputStream(newFolderName)) {
             out.write(buffer,
                     0,
                     buffer.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-
-        /*
-        /Task 2
-         */
-        try (BufferedReader text = new BufferedReader(new FileReader("/Users/hlebchupin/Downloads/Text.txt"))) {
+    public static void sortFileNames(String folderName) {
+        try (BufferedReader text = new BufferedReader(new FileReader(folderName))) {
             TreeSet<String> sort = new TreeSet<String>();
             while (text.ready()) {
                 sort.add(text.readLine().toString());
@@ -41,16 +58,11 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-
-        /*
-        /Task 3
-         */
-
+    public static void getLinesInFile(String folderName, int numOfLines) {
         File folder = null;
-        folder = new
-
-                File("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven");
+        folder = new File(folderName);
 
         String[] bufer = folder.list(new FolderFileNameFilter(".java"));
         int o = 1;
@@ -59,7 +71,7 @@ public class Main {
             System.out.println("File number " + o + " :");
             System.out.println("File name is: " + s);
             try (BufferedReader read = new BufferedReader(new FileReader(folder + "/" + s))) {
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < numOfLines; i++) {
                     System.out.println(read.readLine());
                 }
                 o++;
@@ -68,12 +80,6 @@ public class Main {
                 e.printStackTrace();
             }
         }
-
-    /*
-   /Task 4
-    */
-        UniqueWordsFinder finder = new UniqueWordsFinder();
-        finder.UniqueWordsCounter("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", ".java");
     }
 }
 

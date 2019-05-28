@@ -9,19 +9,18 @@ import java.util.StringTokenizer;
 
 public class UniqueWordsFinder {
 
-    private static HashSet uniqueWordsCount = new HashSet();
-    ;
+    private HashSet uniqueWordsCount = new HashSet();
 
-    public void UniqueWordsCounter(String path, String nameFilter) {
+    public void uniqueWordsCounter(String path, String nameFilter) {
         File folder = new File(path);
         String[] buferTwo = folder.list(new FolderFileNameFilter(nameFilter));
         for (String s : buferTwo) {
-            UniqueWordsFinder(folder + "/" + s);
+            getNumUniqueWords(folder + "/" + s);
         }
         System.out.println(uniqueWordsCount.size());
     }
 
-    private void UniqueWordsFinder(String path) {
+    private void getNumUniqueWords(String path) {
         try (BufferedReader inFiles = new BufferedReader(new FileReader(path))) {
             while (inFiles.ready()) {
                 StringTokenizer words = new StringTokenizer(inFiles.readLine(), ",. ");
