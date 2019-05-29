@@ -11,16 +11,16 @@ public class UniqueWordsFinder {
 
     private HashSet uniqueWordsCount = new HashSet();
 
-    public void uniqueWordsCounter(String path, String nameFilter) {
+    public void countUniqueWords(String path, String nameFilter) {
         File folder = new File(path);
         String[] buferTwo = folder.list(new FolderFileNameFilter(nameFilter));
         for (String s : buferTwo) {
-            getNumUniqueWords(folder + "/" + s);
+            sumUniqueWordsCount(folder + "/" + s);
         }
         System.out.println(uniqueWordsCount.size());
     }
 
-    private void getNumUniqueWords(String path) {
+    private void sumUniqueWordsCount(String path) {
         try (BufferedReader inFiles = new BufferedReader(new FileReader(path))) {
             while (inFiles.ready()) {
                 StringTokenizer words = new StringTokenizer(inFiles.readLine(), ",. ");

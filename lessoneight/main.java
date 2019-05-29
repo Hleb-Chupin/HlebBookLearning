@@ -9,7 +9,7 @@ public class Main {
         /*
         /Task 1
          */
-        Main.videoFileCopier("/Users/hlebchupin/Downloads/IMG_3321.mov", "/Users/hlebchupin/Downloads/IMG_3321_copy.mov");
+        Main.copyVideoFile("/Users/hlebchupin/Downloads/IMG_3321.mov", "/Users/hlebchupin/Downloads/IMG_3321_copy.mov");
         /*
         /Task 2
          */
@@ -17,17 +17,17 @@ public class Main {
         /*
         /Task 3
          */
-        Main.getLinesInFile("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", 3);
+        Main.sortLinesInFile("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", 3);
 
 
     /*
    /Task 4
     */
         UniqueWordsFinder finder = new UniqueWordsFinder();
-        finder.uniqueWordsCounter("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", ".java");
+        finder.countUniqueWords("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", ".java");
     }
 
-    public static void videoFileCopier(String folderName, String newFolderName) {
+    public static void copyVideoFile(String folderName, String newFolderName) {
         byte[] buffer = null;
         try (InputStream in = new FileInputStream(folderName)) {
             buffer = new byte[in.available()];
@@ -60,7 +60,7 @@ public class Main {
         }
     }
 
-    public static void getLinesInFile(String folderName, int numOfLines) {
+    public static void sortLinesInFile(String folderName, int numOfLines) {
         File folder = null;
         folder = new File(folderName);
 
