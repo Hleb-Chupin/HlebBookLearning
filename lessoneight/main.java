@@ -9,15 +9,15 @@ public class Main {
         /*
         /Task 1
          */
-        Main.copyVideoFile("/Users/hlebchupin/Downloads/IMG_3321.mov", "/Users/hlebchupin/Downloads/IMG_3321_copy.mov");
+        copyFile("/Users/hlebchupin/Downloads/IMG_3321.mov", "/Users/hlebchupin/Downloads/IMG_3321_copy.mov");
         /*
         /Task 2
          */
-        Main.sortFileNames("/Users/hlebchupin/Downloads/Text.txt");
+        sortFileNames("/Users/hlebchupin/Downloads/Text.txt");
         /*
         /Task 3
          */
-        Main.sortLinesInFile("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", 3);
+        sortLinesInFile("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", 3, ".java");
 
 
     /*
@@ -27,30 +27,26 @@ public class Main {
         finder.countUniqueWords("/Users/hlebchupin/Documents/Java/chupin/booklearning/src/lessonseven", ".java");
     }
 
-    public static void copyVideoFile(String folderName, String newFolderName) {
+    public static void copyFile(String fileNamePath, String newFileNamePath) {
         byte[] buffer = null;
-        try (InputStream in = new FileInputStream(folderName)) {
+        try (InputStream in = new FileInputStream(fileNamePath)) {
             buffer = new byte[in.available()];
-            in.read(buffer,
-                    0,
-                    buffer.length);
+            in.read(buffer, 0, buffer.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (OutputStream out = new FileOutputStream(newFolderName)) {
-            out.write(buffer,
-                    0,
-                    buffer.length);
+        try (OutputStream out = new FileOutputStream(newFileNamePath)) {
+            out.write(buffer, 0, buffer.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void sortFileNames(String folderName) {
-        try (BufferedReader text = new BufferedReader(new FileReader(folderName))) {
-            TreeSet<String> sort = new TreeSet<String>();
+    public static void sortFileNames(String folderPath) {
+        try (BufferedReader text = new BufferedReader(new FileReader(folderPath))) {
+            Set<String> sort = new TreeSet<>();
             while (text.ready()) {
-                sort.add(text.readLine().toString());
+                sort.add(text.readLine());
             }
             for (String s : sort) {
                 System.out.println(s);
@@ -60,14 +56,11 @@ public class Main {
         }
     }
 
-    public static void sortLinesInFile(String folderName, int numOfLines) {
-        File folder = null;
-        folder = new File(folderName);
-
-        String[] bufer = folder.list(new FolderFileNameFilter(".java"));
+    public static void sortLinesInFile(String folderPath, int numOfLines, String fileName) {
+        File folder = new File(folderPath);
+        String[] buffer = folder.list(new FolderFileNameFilter(fileName));
         int o = 1;
-        for (
-                String s : bufer) {
+        for (String s : buffer) {
             System.out.println("File number " + o + " :");
             System.out.println("File name is: " + s);
             try (BufferedReader read = new BufferedReader(new FileReader(folder + "/" + s))) {
@@ -75,7 +68,6 @@ public class Main {
                     System.out.println(read.readLine());
                 }
                 o++;
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

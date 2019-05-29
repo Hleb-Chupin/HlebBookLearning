@@ -6,7 +6,7 @@ public class FolderFileNameFilter implements java.io.FilenameFilter {
 
     String endName;
 
-    public FolderFileNameFilter(String endName){
+    public FolderFileNameFilter(String endName) {
         this.endName = endName;
     }
 
