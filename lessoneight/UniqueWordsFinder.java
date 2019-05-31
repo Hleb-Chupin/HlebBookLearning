@@ -15,9 +15,7 @@ public class UniqueWordsFinder {
         File folder = new File(folderPath);
         String[] bufferTwo = folder.list(new FolderFileNameFilter(nameFilter));
         for (String s : bufferTwo) {
-            for (String str : sumUniqueWordsCount(folder + "/" + s)) {
-                overallCount.add(str);
-            }
+            overallCount.addAll(sumUniqueWordsCount(folder + "/" + s));
         }
         System.out.println(overallCount.size());
     }
