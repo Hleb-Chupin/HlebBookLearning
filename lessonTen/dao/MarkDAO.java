@@ -1,9 +1,16 @@
 package lessonTen.dao;
 
-public interface MarkDAO {
-    public void getAll ();
-    public void getMarkById(Integer num);
-    public void setMarkById();
-    public void deleteMarkById();
+import lessonTen.dto.MarkDTO;
+import java.util.List;
 
+public interface MarkDAO {
+    List getAll();
+
+    Object getMarkById(long id);
+
+    void setMarkById(Integer id, MarkDTO markVar);
+
+    void setMark(MarkDTO markVar);
+
+    void deleteById(long id);
 }

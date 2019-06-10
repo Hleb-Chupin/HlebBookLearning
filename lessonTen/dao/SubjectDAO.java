@@ -1,9 +1,18 @@
 package lessonTen.dao;
 
-public interface SubjectDAO {
-    public void getAll();
-    public void getSubjectById();
-    public void setSubjectById();
-    public void deleteSubjectById();
+import lessonTen.dto.MarkDTO;
+import lessonTen.dto.SubjectDTO;
 
+import java.util.List;
+
+public interface SubjectDAO {
+    List getAll();
+
+    Object getSubjectById(long id);
+
+    void setSubjectById(Integer id, SubjectDTO subjectVar);
+
+    void setSubject(SubjectDTO subjectVar);
+
+    void deleteById(long id);
 }

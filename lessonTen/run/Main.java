@@ -1,12 +1,28 @@
 package lessonTen.run;
 
+import lessonTen.dao.MarkDAO;
+import lessonTen.dao.MarkDAOImpl;
 import lessonTen.dao.StudentDAOImpl;
+import lessonTen.dao.SubjectDAOImpl;
+import lessonTen.dto.MarkDTO;
 import lessonTen.dto.StudentDTO;
+import lessonTen.dto.SubjectDTO;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] Args) {
         StudentDAOImpl student = new StudentDAOImpl();
-        StudentDTO studentas = new StudentDTO("Anton", "Boris", 2010);
-        student.deleteById(7);
+        for (StudentDTO o : student.getAll()) {
+            System.out.println(o.getName());
+        }
+        MarkDAOImpl mark = new MarkDAOImpl();
+        for (MarkDTO o : mark.getAll()) {
+            System.out.println(o.getMark());
+        }
+        SubjectDAOImpl subject = new SubjectDAOImpl();
+        for (SubjectDTO o : subject.getAll()) {
+            System.out.println(o.getNameSubject());
+        }
     }
 }
