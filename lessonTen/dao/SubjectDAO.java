@@ -1,6 +1,6 @@
-package lesson_ten.Base;
+package lessonTen.dao;
 
-public interface Subject_DAO {
+public interface SubjectDAO {
     public void getAll();
     public void getSubjectById();
     public void setSubjectById();

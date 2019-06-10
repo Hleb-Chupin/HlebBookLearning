@@ -1,6 +1,6 @@
-package lesson_ten.Base;
+package lessonTen.dao;
 
-public interface Mark_DAO {
+public interface MarkDAO {
     public void getAll ();
     public void getMarkById(Integer num);
     public void setMarkById();

@@ -1,6 +1,6 @@
-package lesson_ten.Util;
+package lessonTen.dao;
 
-public class Subject_DAO implements lesson_ten.Base.Subject_DAO {
+public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
 
     @Override
     public void getAll() {

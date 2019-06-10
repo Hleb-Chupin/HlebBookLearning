@@ -1,10 +1,12 @@
-package lesson_ten.Util;
+package lessonTen.dao;
+
+import lessonTen.util.ConnectionDB;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Mark_DAO implements lesson_ten.Base.Mark_DAO {
+public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     ConnectionDB conn = new ConnectionDB();
 
     @Override
