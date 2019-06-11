@@ -5,6 +5,8 @@ public class StudentDTO {
     private String name;
     private String secondName;
     private int enrolmentYear;
+    private int mark;
+    private String subjectName;
 
     public StudentDTO(int id, String name, String secondName, int enrolmentYear) {
         this.id = id;
@@ -19,11 +21,34 @@ public class StudentDTO {
         this.enrolmentYear = enrolmentYear;
     }
 
+    public StudentDTO(String name, String secondName, int mark, String subjectName) {
+        this.name = name;
+        this.secondName = secondName;
+        this.mark = mark;
+        this.subjectName = subjectName;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
     public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,7 +72,7 @@ public class StudentDTO {
         return enrolmentYear;
     }
 
-    public void setEnrolmentYear(Integer enrolmentYear) {
+    public void setEnrolmentYear(int enrolmentYear) {
         this.enrolmentYear = enrolmentYear;
     }
 }

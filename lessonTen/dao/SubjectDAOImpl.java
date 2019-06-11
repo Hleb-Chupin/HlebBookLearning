@@ -46,7 +46,7 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     }
 
     @Override
-    public void insertSubjectById(SubjectDTO subjectVar) {
+    public void updateSubjectById(SubjectDTO subjectVar) {
         try (Statement st = conn.connectDB().createStatement()) {
             st.executeUpdate("update subject set name_subject = '" + subjectVar.getNameSubject() + " where id = " + subjectVar.getId() + " ;");
             conn.closeConnection();

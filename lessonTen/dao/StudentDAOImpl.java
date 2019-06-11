@@ -30,6 +30,21 @@ public class StudentDAOImpl implements lessonTen.dao.StudentDAO {
     }
 
     @Override
+    public List<StudentDTO> getStudentByIdWithMarkAndSubject(int id) {
+        try (Statement st = conn.connectDB().createStatement()) {
+            studentList = new ArrayList<>();
+            ResultSet res = st.executeQuery("select name, second_name, mark, name_subject from mark left join student on mark.id_student = student.id left join subject on mark.id_subject = subject.id_subject where id = " + id + ";");
+            while (res.next()) {
+                student = new StudentDTO(res.getString(1), res.getString(2), res.getInt(3), res.getString(4));
+                studentList.add(student);
+            }
+            conn.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return studentList;    }
+
+    @Override
     public StudentDTO getStudentById(long id) {
         try (Statement st = conn.connectDB().createStatement()) {
             ResultSet res = st.executeQuery("select * from student where id = " + id + ";");
@@ -44,7 +59,7 @@ public class StudentDAOImpl implements lessonTen.dao.StudentDAO {
     }
 
     @Override
-    public void insertStudentById(StudentDTO studentVar) {
+    public void updateStudentById(StudentDTO studentVar) {
         try (Statement st = conn.connectDB().createStatement()) {
             st.executeUpdate("update student set name = '" + studentVar.getName() + "', second_name = '" + studentVar.getSecondName() + "', enrolment_year = " + studentVar.getEnrolmentYear() + " where id = " + studentVar.getId() + " ;");
             conn.closeConnection();

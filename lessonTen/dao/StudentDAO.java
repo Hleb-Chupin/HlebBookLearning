@@ -7,9 +7,11 @@ import java.util.List;
 public interface StudentDAO {
     List getAll();
 
+    List getStudentByIdWithMarkAndSubject(int id);
+
     Object getStudentById(long id);
 
-    void insertStudentById(StudentDTO studentVar);
+    void updateStudentById(StudentDTO studentVar);
 
     void insertStudent(StudentDTO studentVar);
 

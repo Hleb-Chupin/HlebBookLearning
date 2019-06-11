@@ -10,7 +10,7 @@ public interface SubjectDAO {
 
     Object getSubjectById(long id);
 
-    void insertSubjectById(SubjectDTO subjectVar);
+    void updateSubjectById(SubjectDTO subjectVar);
 
     void insertSubject(SubjectDTO subjectVar);
 

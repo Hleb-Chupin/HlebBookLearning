@@ -44,7 +44,7 @@ public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     }
 
     @Override
-    public void insertMarkById(MarkDTO markVar) {
+    public void updateMarkById (MarkDTO markVar) {
         try (Statement st = conn.connectDB().createStatement()) {
             st.executeUpdate("update mark set mark = " + markVar.getMark() + ", id_subject = " + markVar.getIdSubject() + ", id_student = " + markVar.getIdStudent() + " where id = " + markVar.getId() + " ;");
             conn.closeConnection();

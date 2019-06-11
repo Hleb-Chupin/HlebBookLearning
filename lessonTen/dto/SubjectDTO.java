@@ -17,7 +17,7 @@ public class SubjectDTO {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
