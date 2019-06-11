@@ -44,9 +44,9 @@ public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     }
 
     @Override
-    public void setMarkById(Integer id, MarkDTO markVar) {
+    public void insertMarkById(MarkDTO markVar) {
         try (Statement st = conn.connectDB().createStatement()) {
-            st.executeUpdate("update mark set mark = " + markVar.getMark() + ", id_subject = " + markVar.getIdSubject() + ", id_student = " + markVar.getIdStudent() + " where id = " + id + " ;");
+            st.executeUpdate("update mark set mark = " + markVar.getMark() + ", id_subject = " + markVar.getIdSubject() + ", id_student = " + markVar.getIdStudent() + " where id = " + markVar.getId() + " ;");
             conn.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     }
 
     @Override
-    public void setMark(MarkDTO markVar) {
+    public void insertMark(MarkDTO markVar) {
         try (Statement st = conn.connectDB().createStatement()) {
             st.executeUpdate("insert into mark (mark, id_subject, id_student) values (" + markVar.getMark() + ", " + markVar.getIdSubject() + ", " + markVar.getIdStudent() + ");");
             conn.closeConnection();

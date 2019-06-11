@@ -8,9 +8,9 @@ public interface MarkDAO {
 
     Object getMarkById(long id);
 
-    void setMarkById(Integer id, MarkDTO markVar);
+    void insertMarkById(MarkDTO markVar);
 
-    void setMark(MarkDTO markVar);
+    void insertMark(MarkDTO markVar);
 
     void deleteById(long id);
 }

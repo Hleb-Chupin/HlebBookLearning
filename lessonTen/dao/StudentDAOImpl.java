@@ -44,9 +44,9 @@ public class StudentDAOImpl implements lessonTen.dao.StudentDAO {
     }
 
     @Override
-    public void setStudentById(Integer id, StudentDTO studentVar) {
+    public void insertStudentById(StudentDTO studentVar) {
         try (Statement st = conn.connectDB().createStatement()) {
-            st.executeUpdate("update student set name = '" + studentVar.getName() + "', second_name = '" + studentVar.getSecondName() + "', enrolment_year = " + studentVar.getEnrolmentYear() + " where id = " + id + " ;");
+            st.executeUpdate("update student set name = '" + studentVar.getName() + "', second_name = '" + studentVar.getSecondName() + "', enrolment_year = " + studentVar.getEnrolmentYear() + " where id = " + studentVar.getId() + " ;");
             conn.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class StudentDAOImpl implements lessonTen.dao.StudentDAO {
     }
 
     @Override
-    public void setStudent(StudentDTO studentVar) {
+    public void insertStudent(StudentDTO studentVar) {
         try (Statement st = conn.connectDB().createStatement()) {
             st.executeUpdate("insert into student (name, second_name, enrolment_year) values ('" + studentVar.getName() + "', '" + studentVar.getSecondName() + "', " + studentVar.getEnrolmentYear() + ");");
             conn.closeConnection();

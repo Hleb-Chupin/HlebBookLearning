@@ -9,9 +9,9 @@ public interface StudentDAO {
 
     Object getStudentById(long id);
 
-    void setStudentById(Integer id, StudentDTO studentVar);
+    void insertStudentById(StudentDTO studentVar);
 
-    void setStudent(StudentDTO studentVar);
+    void insertStudent(StudentDTO studentVar);
 
     void deleteStudentById(long id);
 }
