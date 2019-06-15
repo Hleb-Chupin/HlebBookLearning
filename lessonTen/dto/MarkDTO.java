@@ -19,6 +19,9 @@ public class MarkDTO {
         this.idStudent = idStudent;
     }
 
+    public MarkDTO() {
+    }
+
     public int getId() {
         return id;
     }

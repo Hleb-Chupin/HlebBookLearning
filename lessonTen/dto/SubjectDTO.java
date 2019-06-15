@@ -13,6 +13,9 @@ public class SubjectDTO {
         this.nameSubject = nameSubject;
     }
 
+    public SubjectDTO() {
+    }
+
     public int getId() {
         return id;
     }

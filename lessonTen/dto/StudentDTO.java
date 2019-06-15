@@ -28,6 +28,9 @@ public class StudentDTO {
         this.subjectName = subjectName;
     }
 
+    public StudentDTO() {
+    }
+
     public int getMark() {
         return mark;
     }
