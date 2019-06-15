@@ -34,19 +34,19 @@ public class ConnectionPool {
         if (freeConnections.isEmpty()) {
             return null;
         } else {
-            connection = freeConnections.remove(freeConnections.size() - 1);
+            Connection connection = freeConnections.remove(freeConnections.size() - 1);
             usedConnections.add(connection);
             return connection;
         }
     }
 
 
-    public static boolean releaseConnection() {
+    public static boolean releaseConnection(Connection currentConnection) {
         if (usedConnections.isEmpty()) {
             return false;
         } else {
-            connection = usedConnections.remove(usedConnections.size() - 1);
-            freeConnections.add(connection);
+            usedConnections.remove(currentConnection);
+            freeConnections.add(currentConnection);
             return true;
         }
     }

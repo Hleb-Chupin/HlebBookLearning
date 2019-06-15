@@ -2,8 +2,8 @@ package lessonTen.dao;
 
 import lessonTen.connectionpool.ConnectionPool;
 import lessonTen.dto.SubjectDTO;
-import lessonTen.connectionpool.ConnectionDB;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,14 +16,16 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
 
     @Override
     public List<SubjectDTO> getAll() {
-        try (Statement st = ConnectionPool.getConnectionPool().createStatement()) {
+        try {
+            Connection connection = ConnectionPool.getConnectionPool();
+            Statement st = connection.createStatement();
             subjectList = new ArrayList<>();
             ResultSet res = st.executeQuery("select * from subject;");
             while (res.next()) {
                 subject = new SubjectDTO(res.getInt(1), res.getString(2));
                 subjectList.add(subject);
             }
-            ConnectionPool.releaseConnection();
+            ConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -32,12 +34,14 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
 
     @Override
     public Object getSubjectById(long id) {
-        try (Statement st = ConnectionPool.getConnectionPool().createStatement()) {
+        try {
+            Connection connection = ConnectionPool.getConnectionPool();
+            Statement st = connection.createStatement();
             ResultSet res = st.executeQuery("select * from subject where id = " + id + ";");
             while (res.next()) {
                 subject = new SubjectDTO(res.getInt(1), res.getString(2));
             }
-            ConnectionPool.releaseConnection();
+            ConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -46,9 +50,11 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
 
     @Override
     public void updateSubjectById(SubjectDTO subjectVar) {
-        try (Statement st = ConnectionPool.getConnectionPool().createStatement()) {
+        try {
+            Connection connection = ConnectionPool.getConnectionPool();
+            Statement st = connection.createStatement();
             st.executeUpdate("update subject set name_subject = '" + subjectVar.getNameSubject() + " where id = " + subjectVar.getId() + " ;");
-            ConnectionPool.releaseConnection();
+            ConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,9 +62,11 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
 
     @Override
     public void insertSubject(SubjectDTO subjectVar) {
-        try (Statement st = ConnectionPool.getConnectionPool().createStatement()) {
+        try {
+            Connection connection = ConnectionPool.getConnectionPool();
+            Statement st = connection.createStatement();
             st.executeUpdate("insert into subject (name_subject) values ('" + subjectVar.getNameSubject() + ");");
-            ConnectionPool.releaseConnection();
+            ConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,9 +74,11 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
 
     @Override
     public void deleteById(long id) {
-        try (Statement st = ConnectionPool.getConnectionPool().createStatement()) {
+        try {
+            Connection connection = ConnectionPool.getConnectionPool();
+            Statement st = connection.createStatement();
             st.executeUpdate("delete from subject where id = " + id + ";");
-            ConnectionPool.releaseConnection();
+            ConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
