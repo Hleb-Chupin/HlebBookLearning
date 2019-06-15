@@ -20,10 +20,10 @@ public class Main {
 //        for (MarkDTO o : mark.getAll()) {
 //            System.out.println(o.getMark());
 //        }
-//        SubjectDAOImpl subject = new SubjectDAOImpl();
-//        for (SubjectDTO o : subject.getAll()) {
-//            System.out.println(o.getNameSubject());
-//        }
+        SubjectDAOImpl subject = new SubjectDAOImpl();
+        for (SubjectDTO o : subject.getAll()) {
+            System.out.println(o.getNameSubject());
+        }
         for (StudentDTO o : student.getStudentByIdWithMarkAndSubject(1)){
             System.out.println(o.getName() + ", " + o.getSecondName() + ", " + o.getSubjectName()+ ", " + o.getMark());
         }

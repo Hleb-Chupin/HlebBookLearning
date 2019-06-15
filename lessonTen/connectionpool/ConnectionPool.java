@@ -8,16 +8,16 @@ import java.util.List;
 public class ConnectionPool {
 
     //    Creating class fields
-    private String url = DbParameter.DB_Url;
-    private String user = DbParameter.DB_User;
-    private String password = DbParameter.DB_Password;
-    private int poolSize = DbParameter.DB_Pool_Size;
-    private List<Connection> freeConnections;
-    private List<Connection> usedConnections = new ArrayList<>();
-    private Connection connection;
+    private static String url = DbParameter.DB_Url;
+    private static String user = DbParameter.DB_User;
+    private static String password = DbParameter.DB_Password;
+    private static int poolSize = DbParameter.DB_Pool_Size;
+    private static List<Connection> freeConnections;
+    private static List<Connection> usedConnections = new ArrayList<>();
+    private static Connection connection;
 
     //    Creating simple conneciton pool, using collections.
-    {
+    static {
         freeConnections = new ArrayList<>(poolSize);
         for (int i = 0; i < poolSize; i++) {
             try {
@@ -30,7 +30,7 @@ public class ConnectionPool {
     }
 
     //    Getting the connection.
-    public Connection getConnectionPool() {
+    public static Connection getConnectionPool() {
         if (freeConnections.isEmpty()) {
             return null;
         } else {
@@ -41,7 +41,7 @@ public class ConnectionPool {
     }
 
 
-    public boolean releaseConnection() {
+    public static boolean releaseConnection() {
         if (usedConnections.isEmpty()) {
             return false;
         } else {
@@ -51,11 +51,11 @@ public class ConnectionPool {
         }
     }
 
-    public int countUsedConnections() {
+    public static int countUsedConnections() {
         return usedConnections.size();
     }
 
-    public int countFreeConnections() {
+    public static int countFreeConnections() {
         return freeConnections.size();
     }
 }
