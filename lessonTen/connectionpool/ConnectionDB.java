@@ -8,6 +8,11 @@ public class ConnectionDB {
     Connection connection = null;
 
     public Connection getConnection(String url, String user, String password) throws ConnectionPoolException {
+        try {Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {

@@ -1,20 +1,18 @@
 package lessonTen.connectionpool;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionPool {
 
     //    Creating class fields
-    private static String url = DbParameter.DB_Url;
-    private static String user = DbParameter.DB_User;
-    private static String password = DbParameter.DB_Password;
-    private static int poolSize = DbParameter.DB_Pool_Size;
+    private static String url = DBParameter.DB_Url;
+    private static String user = DBParameter.DB_User;
+    private static String password = DBParameter.DB_Password;
+    private static int poolSize = DBParameter.DB_Pool_Size;
     private static List<Connection> freeConnections;
     private static List<Connection> usedConnections = new ArrayList<>();
-    private static Connection connection;
 
     //    Creating simple conneciton pool, using collections.
     static {
