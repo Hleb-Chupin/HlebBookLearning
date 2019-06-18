@@ -10,20 +10,20 @@ import java.util.List;
 public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     MarkDTO mark;
     List<MarkDTO> markList;
-    private static final String SELECTALL = "select * from mark;";
-    private static final String SELECTBYID = "select * from mark where id = ?;";
-    private static final String UPDATEMARK = "update mark set mark = ?, id_subject = ?, id_student = ? where id = ?;";
-    private static final String INSERTINTOMARK = "insert into mark (mark, id_subject, id_student) values (?, ?, ?);";
-    private static final String DELETEMARKBYID = "delete from mark where id = ?;";
+    private static final String SELECT_ALL = "select * from mark;";
+    private static final String SELECT_ALL_BY_ID = "select * from mark where id = ?;";
+    private static final String UPDATE_MARK = "update mark set mark = ?, id_subject = ?, id_student = ? where id = ?;";
+    private static final String INSERT_INTO_MARK = "insert into mark (mark, id_subject, id_student) values (?, ?, ?);";
+    private static final String DELETE_MARK_BY_ID = "delete from mark where id = ?;";
 
 
     @Override
     public List<MarkDTO> getAll() {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
+            Connection connection = ConnectionPool.getConnection();
             Statement st = connection.createStatement();
             markList = new ArrayList<>();
-            ResultSet res = st.executeQuery(SELECTALL);
+            ResultSet res = st.executeQuery(SELECT_ALL);
             while (res.next()) {
                 mark = new MarkDTO(res.getInt(1), res.getString(2), res.getInt(3), res.getInt(4));
                 markList.add(mark);
@@ -38,8 +38,8 @@ public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     @Override
     public MarkDTO getMarkById(long id) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(SELECTBYID);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(SELECT_ALL_BY_ID);
             pr.setLong(1, id);
             ResultSet res = pr.executeQuery();
             while (res.next()) {
@@ -55,8 +55,8 @@ public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     @Override
     public void updateMarkById(MarkDTO markVar) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(UPDATEMARK);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(UPDATE_MARK);
             pr.setString(1, markVar.getMark());
             pr.setInt(2, markVar.getIdStudent());
             pr.setInt(3, markVar.getIdSubject());
@@ -72,8 +72,8 @@ public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     @Override
     public void insertMark(MarkDTO markVar) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(INSERTINTOMARK);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(INSERT_INTO_MARK);
             pr.setString(1, markVar.getMark());
             pr.setInt(2, markVar.getIdSubject());
             pr.setInt(3, markVar.getIdStudent());
@@ -87,8 +87,8 @@ public class MarkDAOImpl implements lessonTen.dao.MarkDAO {
     @Override
     public void deleteById(long id) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(DELETEMARKBYID);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(DELETE_MARK_BY_ID);
             pr.setLong(1, id);
             pr.executeUpdate();
             ConnectionPool.releaseConnection(connection);

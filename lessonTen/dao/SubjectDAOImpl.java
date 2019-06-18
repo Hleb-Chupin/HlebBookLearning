@@ -10,19 +10,19 @@ import java.util.List;
 public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     SubjectDTO subject;
     List<SubjectDTO> subjectList;
-    private static final String SELECTALL = "select * from subject;";
-    private static final String SELECTBYID = "select * from subject where id = ?;";
-    private static final String UPDATESUBJECT = "update subject set name_subject = ? where id = ?;";
-    private static final String INSERTINTOSUBJECT = "insert into subject (name_subject) values (?);";
-    private static final String DELETESTUDENTBYID = "delete from subject where id = ?;";
+    private static final String SELECT_ALL = "select * from subject;";
+    private static final String SELECT_ALL_BY_ID = "select * from subject where id = ?;";
+    private static final String UPDATE_SUBJECT = "update subject set name_subject = ? where id = ?;";
+    private static final String INSERT_INTO_SUBJECT = "insert into subject (name_subject) values (?);";
+    private static final String DELETE_STUDENT_BY_ID = "delete from subject where id = ?;";
 
     @Override
     public List<SubjectDTO> getAll() {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
+            Connection connection = ConnectionPool.getConnection();
             Statement st = connection.createStatement();
             subjectList = new ArrayList<>();
-            ResultSet res = st.executeQuery(SELECTALL);
+            ResultSet res = st.executeQuery(SELECT_ALL);
             while (res.next()) {
                 subject = new SubjectDTO(res.getInt(1), res.getString(2));
                 subjectList.add(subject);
@@ -37,8 +37,8 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     @Override
     public Object getSubjectById(long id) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(SELECTBYID);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(SELECT_ALL_BY_ID);
             pr.setLong(1, id);
             ResultSet res = pr.executeQuery();
             while (res.next()) {
@@ -54,8 +54,8 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     @Override
     public void updateSubjectById(SubjectDTO subjectVar) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(UPDATESUBJECT);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(UPDATE_SUBJECT);
             pr.setString(1, subjectVar.getNameSubject());
             pr.setInt(2, subjectVar.getId());
             pr.executeUpdate();
@@ -68,8 +68,8 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     @Override
     public void insertSubject(SubjectDTO subjectVar) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(INSERTINTOSUBJECT);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(INSERT_INTO_SUBJECT);
             pr.setString(1, subjectVar.getNameSubject());
             pr.executeUpdate();
             ConnectionPool.releaseConnection(connection);
@@ -81,8 +81,8 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     @Override
     public void deleteById(long id) {
         try {
-            Connection connection = ConnectionPool.getConnectionPool();
-            PreparedStatement pr = connection.prepareStatement(DELETESTUDENTBYID);
+            Connection connection = ConnectionPool.getConnection();
+            PreparedStatement pr = connection.prepareStatement(DELETE_STUDENT_BY_ID);
             pr.setLong(1, id);
             pr.executeUpdate();
             ConnectionPool.releaseConnection(connection);

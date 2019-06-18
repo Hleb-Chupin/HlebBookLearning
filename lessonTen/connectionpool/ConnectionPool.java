@@ -28,7 +28,7 @@ public class ConnectionPool {
     }
 
     //    Getting the connection.
-    public static Connection getConnectionPool() {
+    public static Connection getConnection() {
         if (freeConnections.isEmpty()) {
             return null;
         } else {
