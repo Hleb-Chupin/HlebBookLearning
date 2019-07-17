@@ -11,10 +11,10 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     SubjectDTO subject;
     List<SubjectDTO> subjectList;
     private static final String SELECT_ALL = "select * from subject;";
-    private static final String SELECT_ALL_BY_ID = "select * from subject where id = ?;";
-    private static final String UPDATE_SUBJECT = "update subject set name_subject = ? where id = ?;";
-    private static final String INSERT_INTO_SUBJECT = "insert into subject (name_subject) values (?);";
-    private static final String DELETE_STUDENT_BY_ID = "delete from subject where id = ?;";
+    private static final String SELECT_BY_ID = "select * from subject where id_subject = ?;";
+    private static final String UPDATE_SUBJECT = "update subject set name_subject = ? where id_subject = ?;";
+    private static final String INSERT_INTO_SUBJECT = "insert into subject (id_subject, name_subject) values (?, ?);";
+    private static final String DELETE_STUDENT_BY_ID = "delete from subject where id_subject = ?;";
 
     @Override
     public List<SubjectDTO> getAll() {
@@ -35,10 +35,10 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
     }
 
     @Override
-    public Object getSubjectById(long id) {
+    public SubjectDTO getSubjectById(long id) {
         try {
             Connection connection = ConnectionPool.getConnection();
-            PreparedStatement pr = connection.prepareStatement(SELECT_ALL_BY_ID);
+            PreparedStatement pr = connection.prepareStatement(SELECT_BY_ID);
             pr.setLong(1, id);
             ResultSet res = pr.executeQuery();
             while (res.next()) {
@@ -70,7 +70,8 @@ public class SubjectDAOImpl implements lessonTen.dao.SubjectDAO {
         try {
             Connection connection = ConnectionPool.getConnection();
             PreparedStatement pr = connection.prepareStatement(INSERT_INTO_SUBJECT);
-            pr.setString(1, subjectVar.getNameSubject());
+            pr.setInt(1, subjectVar.getId());
+            pr.setString(2, subjectVar.getNameSubject());
             pr.executeUpdate();
             ConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {

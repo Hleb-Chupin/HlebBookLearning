@@ -20,7 +20,7 @@ public class ConnectionDB {
         }
         return connection;
     }
-
+    
     public void closeConnection() {
         if (connection != null) {
             try {

@@ -2,6 +2,7 @@ package lessonTen.dto;
 
 public class StudentDTO {
     private int id;
+    private int markId;
     private String name;
     private String secondName;
     private int enrolmentYear;
@@ -21,11 +22,12 @@ public class StudentDTO {
         this.enrolmentYear = enrolmentYear;
     }
 
-    public StudentDTO(String name, String secondName, int mark, String subjectName) {
+    public StudentDTO(int markId, String name, String secondName, int mark, String subjectName) {
         this.name = name;
         this.secondName = secondName;
         this.mark = mark;
         this.subjectName = subjectName;
+        this.markId = markId;
     }
 
     public StudentDTO() {
@@ -77,5 +79,13 @@ public class StudentDTO {
 
     public void setEnrolmentYear(int enrolmentYear) {
         this.enrolmentYear = enrolmentYear;
+    }
+
+    public int getMarkId() {
+        return markId;
+    }
+
+    public void setMarkId(int markId) {
+        this.markId = markId;
     }
 }
